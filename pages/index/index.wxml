@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="container">
+<text class="hint1">{{hint1}}</text>
+<image mode='widthFix' src='../images/xiaoliu.gif'></image>
+<image mode="widthFix" class='logo' src='../images/dot.gif'></image>
+<form bindsubmit="formSubmit">
+<radio-group class="radio-group" bindchange="radioChange">
+  <label class="radio" wx:for="{{times}}">
+    <radio value="{{item.name}}" checked="{{item.checked}}"  />{{item.value}}
+  </label>
+  <button form-type='submit' type='primary' hover-class='submit-hover'>提交</button>
+</radio-group>
+</form>
+<text class='hint2'>{{hint2}}</text>
+</view>
