@@ -14,25 +14,22 @@ Page({
     
     //globalData中的选择的时间
     time:"",
-    deskAndChairs:{
-      1:[],
-      2:[],
-      3:[],
-      4:[],
-      5:[],
-      6:[],
-      7:[],
-      8:[],
-    },
+    
     
     selectedDesk:"0",
     selectedChair:"0",
     userPhone:"",
     sourceData:{},
-    availableDesk:[1,2,3,4,5],
-    availableChairs:[1,2,3,4],//存放pos
+    availableDesk:{
+      
+    },
+    washedData:{
+
+    },
+    availableChairs:{},//存放pos
     deskBtnClicked:false,
     chairBtnClicked:false,
+    
   },
 
   /**
@@ -54,6 +51,9 @@ Page({
       deskBtnClicked:false,
     })
     console.log(event.target.dataset.id);
+    this.setData({
+      availableChairs:this.data.availableDesk[id],
+    });
   },
   selectChair: function(event){
     this.setData({
@@ -95,6 +95,99 @@ Page({
           sourceData:res.data,
         });
         
+        that.setData({
+        availableDesk: {
+          1:{
+            1:res.data[-1],
+            2:res.data[-2],
+            3:res.data[-3],
+            4:res.data[-4],
+          },
+          2: {
+            1: res.data[-5],
+            2: res.data[-6],
+            3: res.data[-7],
+            4: res.data[-8],
+          },
+          3: {
+            1: res.data[-9],
+            2: res.data[-10],
+          },
+          4: {
+            1: res.data[-11],
+            2: res.data[-12],
+            3: res.data[-13],
+            4: res.data[-14],
+          },
+          5: {
+            1: res.data[-15],
+            2: res.data[-16],
+            3: res.data[-17],
+            4: res.data[-18],
+          },
+          6: {
+            1: res.data[-19],
+            2: res.data[-20],
+          },
+          7: {
+            1: res.data[-21],
+            2: res.data[-22],
+            3: res.data[-23],
+            4: res.data[-24],
+            5: res.data[-25],
+            6: res.data[-26],
+          },
+          8: {
+            1: res.data[-27],
+            2: res.data[-28],
+            3: res.data[-29],
+            4: res.data[-30],
+            5: res.data[-31],
+            6: res.data[-32],
+          },
+        }
+      })
+      ;
+      for (var i =1; i<=8; i++)
+      {
+        for(var j=1;j<=that.data.availableDesk[i].length; j++){
+          if (that.data.availableDesk[i][j][that.data.time]==true)//某个座位已被占用
+          {
+            delete that.data.availableDesk[i][j];
+          }
+        } ;
+        if (that.data.availableDesk[i].length==0){
+          delete that.data.availableDesk[i];//某个桌子全部座位都被占用，删除某个桌子号
+        }
+      };
+      if (that.data.availableDesk.length==0){
+        wx.showToast({
+          title: '无剩余座位，稍后再来',
+          icon:'loading',
+          duration:2000,
+        })
+        setTimeout(function(){
+          wx.hideToast();
+        }, 2000)
+        wx.navigateTo({
+          url: '../index/index',
+        })
+      }
+      for (var i=0; i<30; i++){
+        if (res.data[i].userPhone==this.data.userPhone){
+          wx.showToast({
+            title: '你已预约',
+            icon: 'loading',
+            duration: 2000,
+          })
+          setTimeout(function () {
+            wx.hideToast();
+          }, 2000)
+          wx.navigateTo({
+            url: '../index/index',
+          })
+        }
+      }
       }
     })
   },
@@ -168,8 +261,8 @@ Page({
         duration:2000,
       })
       setTimeout(function(){
-        wx.hideToast(),2000
-      })
+        wx.hideToast();
+      }, 2000)
     }
     else{
       wx.request({
@@ -251,16 +344,24 @@ Page({
         wx.hideToast()
 
       }, 2000)
-
-    
-
-    
     } 
     else if (e.detail.value.verifCode.length==0){
       wx.showToast({
         title: '验证码为空',
         icon: 'loading',
         duration:2000
+      })
+      setTimeout(function () {
+
+        wx.hideToast()
+
+      }, 2000)
+    }
+    else if (this.data.selectedChair=="0"||this.data.selectDesk=="0"){
+      wx.showToast({
+        title: '请选择座位',
+        icon: 'loading',
+        duration: 2000
       })
       setTimeout(function () {
 

@@ -1,20 +1,16 @@
 <!--pages/index/register.wxml-->
+<image src='../images/positionImage.png' style="width:750rpx;height:630rpx;"></image>
 <view class="container">
- 
-    
-  
-
   <form bindsubmit='formSubmit' class="registerForm">
-  <image src='../images/positionImage.png' style="height:630rpx;"></image>
   <view class="login-from">
     
-    <view class="title">
+    <!-- <view class="title">
       <text >预约选座</text>
-    </view>
+    </view> -->
     <view class="selectBox"> 
       <view>
         <view class="itemBox" wx:if="{{selectedDesk==0 && !deskBtnClicked}}" bindtap="clickSelectDesk">
-            未选择桌子
+            选择课桌
           </view>
           <view class="itemBox" wx:if="{{selectedDesk!=0 && !deskBtnClicked}}" bindtap="clickSelectDesk">
             {{selectedDesk}}号桌
@@ -32,7 +28,7 @@
       </view>
       <view wx:if="{{selectedDesk!=0}}">
         <view class="itemBox" wx:if="{{selectedChair==0 && !chairBtnClicked}}" bindtap="clickSelectChair">
-            未选择座位
+            选择座位
         </view>
         <view class="itemBox" wx:if="{{selectedChair!=0 && !chairBtnClicked}}" bindtap="clickSelectChair">
             {{selectedChair}}号座

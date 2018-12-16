@@ -224,9 +224,10 @@ page{
 .itemBox{
   width: 300rpx;
   height: 50rpx;
-  color:rgb(202, 201, 199);
-  text-align:center;
-  
+  color:rgb(172, 166, 156);
+  text-align:left;
+  font-size:40rpx;
+
 }
 ::-webkit-scrollbar{
   width:0;
