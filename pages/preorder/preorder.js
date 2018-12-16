@@ -301,7 +301,12 @@ Page({
       })
     }
   },
-  
+  inputName: function(event){
+    this.setData({
+      name:event.detail.value,
+    });
+    console.log(event.detail.value);
+  },
   formSubmit: function (e) {
     console.log(e.detail.value.verifCode);
     if (e.detail.value.name.length == 0 ) {
@@ -370,6 +375,14 @@ Page({
          },
 
         success: function (res) {
+          wx.showToast({
+            title: '预约成功',
+            icon:'success',
+            duration:2000,
+          });
+          setTImeout(function(){
+            wx.hideToast();
+          }, 2000);
           wx.navigateTo({
             url: '../index/index',
           })
