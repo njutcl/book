@@ -14,20 +14,37 @@ Page({
     positionData:{
     
     },
-
+    //globalData中的选择的时间
+    time:"",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let positionData;
+    // wx.navigateTo({
+    //   url: '../logs/logs?name=time'
+    // })
+    this.setData({
+      time:options.time,
+    });
+    //请求所有预约
+    // /position/getall 包含手机号信息
+    wx.request({
+      url: 'http://132.232.91.230:8080/position/getall',
+      method:'POST',
+
+      success: function(res){
+        console.log("data: "+res.data);
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+   
 
   },
 

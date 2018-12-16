@@ -8,13 +8,13 @@ Page({
     hint2: "座位需提前一天预约！",
     times: [{
       name: "上午",
-      value: "上午：8:00-12:00",checked:"true"
+      value: "上午：8:30-12:30",checked:"true"
     }, {
       name: "下午",
-      value: "下午：12:00-18:00"
+      value: "下午：12:30-18:30"
     }, {
       name: "晚上",
-      value: "晚上：18:00-23:00"
+      value: "晚上：18:30-22:30"
     }],
 
 formSubmit:function(){
