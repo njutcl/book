@@ -1,4 +1,5 @@
 // pages/index/register.js
+const app = getApp();
 Page({
 
   /**
@@ -10,6 +11,9 @@ Page({
     verifText:'获取验证码',
     currentTime:61,
     btndisabled:false,
+    positionData:{
+    
+    },
 
   },
 
@@ -17,7 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let positionData;
   },
 
   /**

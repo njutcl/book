@@ -1,12 +1,36 @@
 <!--pages/index/register.wxml-->
 <view class="container">
-  <!-- <view class="login-icon">
-    <image class="login-img" src="../../images/loginimg.png"> </image>
-  </view> -->
-  <view><text></text></view>
+  
   <form bindsubmit='formSubmit' class="registerForm">
   <view class="login-from">
-    <view class="positionContainer"> </view>
+    <view class="positionContainer">
+      <view class="lineBox">
+        <view class="desk">
+          <view class="chairRowBox">
+            <view class="chair"></view>
+            <view class="chair"></view>
+          </view>
+        </view>
+        <view class="desk">
+          <view class="chairRowBox">
+            <view class="chair"></view>
+            <view class="chair"></view>
+          </view>
+        </view>
+        <view class="desk">
+          <view class="chairRowBox">
+            <view class="chair"></view>
+            <view class="chair"></view>
+          </view>
+        </view>
+      </view>
+      <view class="lineBox">
+        <view class="desk"></view>
+        <view class="desk"></view>
+        <view class="desk"></view>
+      </view>
+      <view class="lineBox"></view>
+    </view>
     <view class="inputView">
       
       <label class="loginLab">账号</label>
