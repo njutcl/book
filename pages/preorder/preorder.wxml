@@ -47,13 +47,13 @@
       </view>
     </view>
     
+    
     <view class="inputView">
       
-      <label class="loginLab">账号</label>
-      <input type='number' class="inputText" placeholder="请输入手机号" name="account" bindinput='inputPhone'/>
+      <label class="loginLab">姓名</label>
+      <input type='text' class="inputText" placeholder="请输入名字" name="name" bindinput='inputPhone'/>
     </view>
     
-   
     
     <view class="line"></view>
     <view class="verifCode">

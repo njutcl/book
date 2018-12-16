@@ -253,8 +253,8 @@ Page({
   },
   getVerifCode: function(){
     var that = this;
-    console.log(this.data.account);
-    if (this.data.account.length!=11){
+    console.log(this.data.userPhone);
+    if (this.data.userPhone.length!=11){
       wx.showToast({
         title:'手机号码错误',
         icon:'loading',
@@ -273,7 +273,7 @@ Page({
         method:'POST',
         
         data:{
-          'phonenumber':this.data.account,
+          'phonenumber':this.data.userPhone,
 
         },
         success: function(res){
@@ -301,19 +301,14 @@ Page({
       })
     }
   },
-  inputPhone: function(event){
-    this.setData({
-      account:event.detail.value,
-    });
-    // console.log(event.detail.value);
-  },
+  
   formSubmit: function (e) {
     console.log(e.detail.value.verifCode);
-    if (e.detail.value.account.length == 0 ) {
+    if (e.detail.value.name.length == 0 ) {
 
       wx.showToast({
 
-        title: '手机号码不得为空!',
+        title: '姓名不得为空!',
 
         icon: 'loading',
 
@@ -327,23 +322,6 @@ Page({
 
       }, 2000)
 
-    } else if (e.detail.value.account.length != 11) {
-
-      wx.showToast({
-
-        title: '请输入11位手机号码!',
-
-        icon: 'loading',
-
-        duration: 2000
-
-      })
-
-      setTimeout(function () {
-
-        wx.hideToast()
-
-      }, 2000)
     } 
     else if (e.detail.value.verifCode.length==0){
       wx.showToast({
@@ -373,7 +351,7 @@ Page({
       
       wx.request({
 
-        url: 'http://132.232.91.230:8080/user/register',
+        url: 'http://132.232.91.230:8080/position/reservation',
 
         header: {
 
@@ -383,14 +361,17 @@ Page({
 
         method: "POST",
 
-        data: { account: e.detail.value.account, password: e.detail.value.password1,
-          code:e.detail.value.verifCode,
-          invitecode:e.detail.value.invitecode,
+        data: {
+          phone:this.data.userPhone,
+          time:this.data.time,
+          code:this.data.code,
+          id:this.data.availableDesk[this.data.selectedDesk][this.data.selectedChair].positionId,
+          name:this.data.name,
          },
 
         success: function (res) {
           wx.navigateTo({
-            url: '../login/login',
+            url: '../index/index',
           })
           
             
