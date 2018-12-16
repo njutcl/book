@@ -1,7 +1,9 @@
 {
   "pages":[
+    
+    "pages/preorder/preorder",
     "pages/index/index",
-    "pages/preorder/preorder"
+    "pages/myOrder/myOrder"
     
   ],
   "window":{

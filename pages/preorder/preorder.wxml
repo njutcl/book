@@ -3,7 +3,7 @@
   
   <form bindsubmit='formSubmit' class="registerForm">
   <view class="login-from">
-    <view class="positionContainer">
+    <!-- <view class="positionContainer">
       <view class="lineBox">
         <view class="desk">
           <view class="chairRowBox">
@@ -30,7 +30,8 @@
         <view class="desk"></view>
       </view>
       <view class="lineBox"></view>
-    </view>
+    </view> -->
+    
     <view class="inputView">
       
       <label class="loginLab">账号</label>

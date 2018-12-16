@@ -11,11 +11,23 @@ Page({
     verifText:'获取验证码',
     currentTime:61,
     btndisabled:false,
-    positionData:{
     
-    },
     //globalData中的选择的时间
     time:"",
+    deskAndChairs:{
+      1:[],
+      2:[],
+      3:[],
+      4:[],
+      5:[],
+      6:[],
+      7:[],
+      8:[],
+    },
+    chairsAvailable:[],
+    selectedDesk:"0",
+    userPhone:"",
+    sourceData:{},
   },
 
   /**
@@ -27,6 +39,7 @@ Page({
     // })
     this.setData({
       time:options.time,
+      userPhone:options.userPhone,
     });
     //请求所有预约
     // /position/getall 包含手机号信息
@@ -35,7 +48,14 @@ Page({
       method:'POST',
 
       success: function(res){
-        console.log("data: "+res.data);
+        console.log(res.data);
+        console.log("data: "+res.data[0].positionId);
+        this.setData({
+          sourceData:res.data,
+        });
+        for (position in this.data){
+          
+        }
       }
     })
   },
