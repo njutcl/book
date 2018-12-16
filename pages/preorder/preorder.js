@@ -24,38 +24,77 @@ Page({
       7:[],
       8:[],
     },
-    chairsAvailable:[],
+    
     selectedDesk:"0",
+    selectedChair:"0",
     userPhone:"",
     sourceData:{},
+    availableDesk:[1,2,3,4,5],
+    availableChairs:[1,2,3,4],//存放pos
+    deskBtnClicked:false,
+    chairBtnClicked:false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+  clickSelectDesk: function(){
+   
+      this.setData({
+        deskBtnClicked:true,
+      });
+
+  
+  },
+  selectDesk: function(event){
+    this.setData({
+      selectedDesk:event.target.dataset.id+"",
+    });
+    this.setData({
+      deskBtnClicked:false,
+    })
+    console.log(event.target.dataset.id);
+  },
+  selectChair: function(event){
+    this.setData({
+      selectedChair:event.target.dataset.id+"",
+    });
+    this.setData({
+      chairBtnClicked:false,
+    });
+  },
+  clickSelectChair: function(){
+    this.setData({
+      chairBtnClicked:true,
+    })
+  },
   onLoad: function (options) {
     // wx.navigateTo({
     //   url: '../logs/logs?name=time'
     // })
-    this.setData({
-      time:options.time,
-      userPhone:options.userPhone,
-    });
+
+
+    // this.setData({
+    //   time:options.time,
+    //   userPhone:options.userPhone,
+    // });
+
+
+    
     //请求所有预约
     // /position/getall 包含手机号信息
+    let that = this;
     wx.request({
       url: 'http://132.232.91.230:8080/position/getall',
       method:'POST',
-
+      
       success: function(res){
         console.log(res.data);
         console.log("data: "+res.data[0].positionId);
-        this.setData({
+        that.setData({
           sourceData:res.data,
         });
-        for (position in this.data){
-          
-        }
+        
       }
     })
   },

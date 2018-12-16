@@ -1,36 +1,55 @@
 <!--pages/index/register.wxml-->
 <view class="container">
+ 
+    
   
+
   <form bindsubmit='formSubmit' class="registerForm">
+  <image src='../images/positionImage.png' style="height:630rpx;"></image>
   <view class="login-from">
-    <!-- <view class="positionContainer">
-      <view class="lineBox">
-        <view class="desk">
-          <view class="chairRowBox">
-            <view class="chair"></view>
-            <view class="chair"></view>
+    
+    <view class="title">
+      <text >预约选座</text>
+    </view>
+    <view class="selectBox"> 
+      <view>
+        <view class="itemBox" wx:if="{{selectedDesk==0 && !deskBtnClicked}}" bindtap="clickSelectDesk">
+            未选择桌子
           </view>
-        </view>
-        <view class="desk">
-          <view class="chairRowBox">
-            <view class="chair"></view>
-            <view class="chair"></view>
+          <view class="itemBox" wx:if="{{selectedDesk!=0 && !deskBtnClicked}}" bindtap="clickSelectDesk">
+            {{selectedDesk}}号桌
           </view>
-        </view>
-        <view class="desk">
-          <view class="chairRowBox">
-            <view class="chair"></view>
-            <view class="chair"></view>
-          </view>
-        </view>
+        <scroll-view  scroll-y class="deskSelect" style="height:120rpx;">
+          
+          <block class="scrollItems" wx:if="{{deskBtnClicked}}" wx:for="{{availableDesk}}" wx:for-item="item" wx:key="key" wx:for-index="index">
+            <!-- <block wx:if="{{index>0}}"> -->
+            <view class="itemBox"  data-id='{{index}}' bindtap="selectDesk">
+              {{index}}号桌
+            </view>
+            <!-- </block> -->
+          </block>
+        </scroll-view>
       </view>
-      <view class="lineBox">
-        <view class="desk"></view>
-        <view class="desk"></view>
-        <view class="desk"></view>
+      <view wx:if="{{selectedDesk!=0}}">
+        <view class="itemBox" wx:if="{{selectedChair==0 && !chairBtnClicked}}" bindtap="clickSelectChair">
+            未选择座位
+        </view>
+        <view class="itemBox" wx:if="{{selectedChair!=0 && !chairBtnClicked}}" bindtap="clickSelectChair">
+            {{selectedChair}}号座
+        </view>
+        
+        <scroll-view  scroll-y wx:if="{{selectedDesk!='0' && chairBtnClicked==true}}"  class="chairSelect" style='height:120rpx;'>
+          
+          <block wx:for="{{availableChairs}}" wx:for-item="item" wx:key="key" wx:for-index="index"> 
+            <block wx:if="{{index>0}}">
+              <view class="itemBox"  data-id='{{index}}' bindtap="selectChair" data-Id='{{index}}'>
+                {{index}}号座
+              </view>
+            </block>
+          </block>
+        </scroll-view>
       </view>
-      <view class="lineBox"></view>
-    </view> -->
+    </view>
     
     <view class="inputView">
       
