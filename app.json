@@ -1,11 +1,15 @@
 {
   "pages":[
-    "pages/index/index"
+    
+    "pages/preorder/preorder",
+    "pages/index/index",
+    "pages/myOrder/myOrder"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
-  }
+    "navigationBarTextStyle":"b"
+ }
 }

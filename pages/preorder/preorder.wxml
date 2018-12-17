@@ -1,0 +1,82 @@
+<!--pages/index/register.wxml-->
+<image src='../images/positionImage.png' style="width:750rpx;height:630rpx;"></image>
+<view class="container">
+  <form bindsubmit='formSubmit' class="registerForm">
+  <view class="login-from">
+    
+    <!-- <view class="title">
+      <text >预约选座</text>
+    </view> -->
+    <view class="selectBox"> 
+      <view>
+        <view class="itemBox" wx:if="{{selectedDesk==0 && !deskBtnClicked}}" bindtap="clickSelectDesk">
+            选择课桌
+          </view>
+          <view class="itemBox" wx:if="{{selectedDesk!=0 && !deskBtnClicked}}" bindtap="clickSelectDesk">
+            {{selectedDesk}}号桌
+          </view>
+        <scroll-view  scroll-y class="deskSelect" style="height:120rpx;">
+          
+          <block class="scrollItems" wx:if="{{deskBtnClicked}}" wx:for="{{availableDesk}}" wx:for-item="item" wx:key="key" wx:for-index="index">
+            <!-- <block wx:if="{{index>0}}"> -->
+            <view class="itemBox"  data-id='{{index}}' bindtap="selectDesk">
+              {{index}}号桌
+            </view>
+            <!-- </block> -->
+          </block>
+        </scroll-view>
+      </view>
+      <view wx:if="{{selectedDesk!=0}}">
+        <view class="itemBox" wx:if="{{selectedChair==0 && !chairBtnClicked}}" bindtap="clickSelectChair">
+            选择座位
+        </view>
+        <view class="itemBox" wx:if="{{selectedChair!=0 && !chairBtnClicked}}" bindtap="clickSelectChair">
+            {{selectedChair}}号座
+        </view>
+        
+        <scroll-view  scroll-y wx:if="{{selectedDesk!='0' && chairBtnClicked==true}}"  class="chairSelect" style='height:120rpx;'>
+          
+          <block wx:for="{{availableChairs}}" wx:for-item="item" wx:key="key" wx:for-index="index"> 
+            <block wx:if="{{index>0}}">
+              <view class="itemBox"  data-id='{{index}}' bindtap="selectChair" data-Id='{{index}}'>
+                {{index}}号座
+              </view>
+            </block>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+    
+    
+    <view class="inputView">
+      
+      <label class="loginLab">姓名</label>
+      <input type='text' class="inputText" placeholder="请输入名字" name="name" bindinput="inputName"/>
+    </view>
+    
+    
+    <view class="line"></view>
+    <view class="verifCode">
+      
+      <!-- <image class="keyImage" src="../../images/password.png"></image> -->
+      
+      <!-- <input class="inputText" password="false" placeholder="请输入验证码" name="verifCode"/> -->
+      
+      <input type='number' class="verifCodeInput" placeholder='请输入验证码' name='verifCode'/>
+      
+      <button class="getVerifCodeBtn" bindtap='getVerifCode' disabled='{{btndisabled}}'>
+        <text class="buttonText">{{verifText}}</text>
+      </button>
+      
+    </view>
+    <!--按钮-->
+    <view class="loginBtnView">
+      <button class="registerBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled='{{disabled}}'
+      form-type="submit">提交</button>
+    </view>
+  </view>
+  </form>
+  
+ 
+  
+</view> 
