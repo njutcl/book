@@ -1,15 +1,19 @@
+
 <!--index.wxml-->
 <view class="container">
-<text class="hint1">{{hint1}}</text>
-<image mode='widthFix' src='../images/xiaoliu.gif'></image>
+<text id="hint1"> 请选择预约时段</text>
+<image mode='widthFix'class="logo" src='../images/xiaoliu.jpg'></image>
 <image mode="widthFix" class='logo' src='../images/dot.gif'></image>
-<form bindsubmit="formSubmit">
+<form class='timeSelect' bindsubmit="formSubmit">
 <radio-group class="radio-group" bindchange="radioChange">
   <label class="radio" wx:for="{{times}}">
-    <radio value="{{item.name}}" checked="{{item.checked}}"  />{{item.value}}
+    <radio value="{{item.value}}" checked="{{item.checked}}"  />{{item.name}}
   </label>
   <button form-type='submit' type='primary' hover-class='submit-hover'>提交</button>
+  <button type='default' bindtap='toRecord' hover-class='submit-hover'>查看预约</button>
+
 </radio-group>
+<text id='hint2'>座位需提前一天预约！</text>
 </form>
-<text class='hint2'>{{hint2}}</text>
+
 </view>
