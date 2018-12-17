@@ -382,7 +382,18 @@ Page({
       }, 2000)
     }
     else {
+      let timeid;
+      if (this.data.time=="morning"){
+        timeid = 0;
+      }
+      else if (this.data.time=="afternoon"){
+        timeid=1;
+      }
+      else{
+        timeid = 2;
+      }
       console.log("id:" + this.data.availableDesk[this.data.selectedDesk][this.data.selectedChair].positionId);
+      console.log("code:"+e.detail.value.verifCode);
       wx.request({
 
         url: 'https://forklp.cn/position/reservation',
@@ -394,16 +405,18 @@ Page({
         },
 
         method: "POST",
+        
 
         data: {
           phone:this.data.userPhone,
-          time:this.data.time,
-          code:this.data.code,
+          time:timeid,
+          code:e.detail.value.verifCode,
           id:this.data.availableDesk[this.data.selectedDesk][this.data.selectedChair].positionId,
           name:this.data.name,
          },
 
         success: function (res) {
+        
           console.log(res);
           if (res.data=="验证码错误"){
             wx.showToast({
@@ -416,7 +429,7 @@ Page({
             }, 2000);
             
           }
-          else if (res.data=="发送验证码成功"){
+          else if (res.data=="预约成功"){
             wx.showToast({
               title: '预约成功',
               icon: 'success',
@@ -428,6 +441,17 @@ Page({
           wx.navigateTo({
             url: '../index/index',
           });
+          }
+          else if (res.data =="您已经预约座位"){
+            wx.showToast({
+              title: '你已预约',
+            });
+            setTimeout(function(){
+              wx.hideToast();
+            },2000);
+            wx.navigateTo({
+              url: '../index/index',
+            })
           }
           else{
             wx.showToast({
