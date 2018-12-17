@@ -8,7 +8,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "小留预约选座",
-    "navigationBarTextStyle": "b"
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
   }
 }

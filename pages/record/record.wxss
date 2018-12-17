@@ -31,3 +31,7 @@ background-color:rgb(62, 219, 247);
 box-shadow: 6rpx 6rpx 1rpx grey;
 font-size: 40rpx;
 }
+.records:hover{
+opacity: 0.5;
+transition: 0.4s;
+}

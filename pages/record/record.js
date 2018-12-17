@@ -72,7 +72,7 @@ Page({
             })}
             if (res.data.positionName) {
               that.setData({
-                id: res.data.positionName
+                name: res.data.positionName
               })
             } else {
               that.setData({
@@ -108,6 +108,13 @@ Page({
           title: '删除成功！',
           icon: "success",
           duration: 1000
+        })
+        that.setData({
+          id:"无",
+          name:"无",
+          morning: "未预约",
+          afternoon:"未预约",
+          evening: "未预约"
         })
       }
     })
