@@ -1,11 +1,15 @@
-
 <view class='container'>
-<form bindsubmit='submitPhone'>
-<input placeholder='请输入手机号' input="number" adjust-position bindinput='search'></input>
+  <form bindsubmit='submitPhone'>
+    <input placeholder='请输入手机号' input="number" adjust-position bindinput='search' class='phone'></input>
 
 
-<button class="submit" type='primary' form-type='submit' hover-class='submit-hover'>提交</button>
-<view wx:for="{{array}}">{{}}<button class="cancle" type='default' hover-class='submit-hover' bindtap='delete'>取消预约</button></view>
+    <button class="submit" type='primary' form-type='submit' hover-class='submit-hover' >提交</button>
+    <view wx:for="{{array}}">{{}}
+<view class="records"> {{item.name}}   {{item.id}}  {{item.time}}   </view>
+      <button class="cancle" type='default' hover-class='submit-hover' bindtap='delete'>取消预约</button>
 
-</form>
+
+
+    </view>
+  </form>
 </view>
