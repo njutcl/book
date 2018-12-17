@@ -54,7 +54,11 @@
       <input type='text' class="inputText" placeholder="请输入名字" name="name" bindinput="inputName"/>
     </view>
     
-    
+    <view class="inputView">
+      
+      <label class="loginLab">手机号</label>
+      <input type='text' class="inputText" placeholder="请输入手机号" name="account" bindinput="inputPhone"/>
+    </view>
     <view class="line"></view>
     <view class="verifCode">
       
@@ -71,12 +75,9 @@
     </view>
     <!--按钮-->
     <view class="loginBtnView">
-      <button class="registerBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled='{{disabled}}'
-      form-type="submit">提交</button>
+      <button class="registerBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled='{{disabled}}'form-type="submit">提交</button>
     </view>
   </view>
   </form>
-  
- 
-  
+
 </view> 

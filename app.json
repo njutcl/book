@@ -2,13 +2,12 @@
   "pages": [
     "pages/index/index",
     "pages/preorder/preorder",
-    "pages/myOrder/myOrder",
     "pages/record/record"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "小留预约选座",
     "navigationBarTextStyle": "b"
   }
 }

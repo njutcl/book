@@ -52,7 +52,7 @@ Page({
     })
     console.log(event.target.dataset.id);
     this.setData({
-      availableChairs:this.data.availableDesk[id],
+      availableChairs:this.data.availableDesk[event.target.dataset.id],
     });
   },
   selectChair: function(event){
@@ -72,12 +72,15 @@ Page({
     // wx.navigateTo({
     //   url: '../logs/logs?name=time'
     // })
+    wx.setNavigationBarTitle({
+      title: '预约座位',
+    });
 
-
-    // this.setData({
-    //   time:options.time,
-    //   userPhone:options.userPhone,
-    // });
+    this.setData({
+      time:options.time,
+      // time:"morning",
+      // userPhone:options.userPhone,
+    });
 
 
     
@@ -85,11 +88,9 @@ Page({
     // /position/getall 包含手机号信息
     let that = this;
     wx.request({
-<<<<<<< HEAD
+
       url: 'http://132.232.91.230:8080/position/getallre',
-=======
-      url: 'https://forklp.cn/position/getall',
->>>>>>> cf5f5e844816307e8b68b30113bdc1409ff38f6c
+
       method:'POST',
       
       success: function(res){
@@ -152,13 +153,20 @@ Page({
         }
       })
       ;
+      console.log(res.data);
       console.log(that.data.availableDesk);
       for (var i =1; i<=8; i++)
       {
-        for(var j=1;j<=that.data.availableDesk[i].length; j++){
+        console.log(that.data.time);
+        console.log(that.data.availableDesk);
+        console.log(Object.keys(that.data.availableDesk[i]).length);
+        for (var j = 1; j <= Object.keys(that.data.availableDesk[i]).length; j++){
+          console.log(that.data.availableDesk[i][j]);
+          
           if (that.data.availableDesk[i][j][that.data.time]==true)//某个座位已被占用
           {
             delete that.data.availableDesk[i][j];
+            console.log(i+" "+j);
           }
         } ;
         if (that.data.availableDesk[i].length==0){
@@ -178,8 +186,19 @@ Page({
           url: '../index/index',
         })
       }
-      for (var i=0; i<30; i++){
-        if (res.data[i].userPhone==this.data.userPhone){
+      console.log(that.data.availableDesk);
+      let userPhoneKey;
+      if (that.data.time=="morning"){
+        userPhoneKey = 'user1Phone';
+      }
+      else if (that.data.time=="afternoon"){
+        userPhoneKey='user2Phone';
+      }
+      else{
+        userPhoneKey = 'user3Phone';
+      }
+      for (var i=0; i<32; i++){
+        if (res.data[i][userPhoneKey]==that.data.userPhone){
           wx.showToast({
             title: '你已预约',
             icon: 'loading',
@@ -204,7 +223,12 @@ Page({
    
 
   },
-
+  inputPhone: function(event){
+    this.setData({
+      userPhone:event.detail.value,
+    });
+    // console.log(this.data.userPhone);
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -270,6 +294,7 @@ Page({
       }, 2000)
     }
     else{
+      console.log(this.data.userPhone);
       wx.request({
         url: 'http://132.232.91.230:8080/position/getcode',
         header:{
@@ -278,8 +303,7 @@ Page({
         method:'POST',
         
         data:{
-          'phonenumber':this.data.userPhone,
-
+          'phone':this.data.userPhone,
         },
         success: function(res){
           console.log(res.data);
@@ -310,7 +334,7 @@ Page({
     this.setData({
       name:event.detail.value,
     });
-    console.log(event.detail.value);
+    // console.log(event.detail.value);
   },
   formSubmit: function (e) {
     console.log(e.detail.value.verifCode);
@@ -358,7 +382,7 @@ Page({
       }, 2000)
     }
     else {
-      
+      console.log("id:" + this.data.availableDesk[this.data.selectedDesk][this.data.selectedChair].positionId);
       wx.request({
 
         url: 'http://132.232.91.230:8080/position/reservation',
@@ -380,17 +404,41 @@ Page({
          },
 
         success: function (res) {
-          wx.showToast({
-            title: '预约成功',
-            icon:'success',
-            duration:2000,
-          });
-          setTImeout(function(){
-            wx.hideToast();
-          }, 2000);
+          console.log(res);
+          if (res.data=="验证码错误"){
+            wx.showToast({
+              title: '验证码错误',
+              icon:'loading',
+              duration:1500,
+            });
+            setTimeout(function(){
+              wx.hideToast();
+            }, 2000);
+            
+          }
+          else if (res.data=="发送验证码成功"){
+            wx.showToast({
+              title: '预约成功',
+              icon: 'success',
+              duration: 2000,
+            });
+            setTimeout(function () {
+              wx.hideToast();
+            }, 2000);
           wx.navigateTo({
             url: '../index/index',
-          })
+          });
+          }
+          else{
+            wx.showToast({
+              title: '未知错误',
+              icon: 'loading',
+              duration: 1500,
+            });
+            setTimeout(function () {
+              wx.hideToast();
+            }, 2000);
+          }
           
             
         },
