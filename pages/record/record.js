@@ -19,6 +19,7 @@ phoneNumber:null
     if(this.data.phoneNumber==null){
   wx.showToast({
     title: '请先输入手机号',
+    icon:'loading',
     duration: 1000
   })
 }else{
