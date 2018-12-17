@@ -1,0 +1,13 @@
+/* pages/record/record.wxss */
+
+.container{
+  padding: 100rpx;
+}
+
+.submit-hover{
+transform: scale(1.05);
+transition: 0.3s;
+}
+.submit{
+  margin: 10% 0;
+}

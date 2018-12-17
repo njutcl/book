@@ -85,7 +85,11 @@ Page({
     // /position/getall 包含手机号信息
     let that = this;
     wx.request({
+<<<<<<< HEAD
       url: 'http://132.232.91.230:8080/position/getallre',
+=======
+      url: 'https://forklp.cn/position/getall',
+>>>>>>> cf5f5e844816307e8b68b30113bdc1409ff38f6c
       method:'POST',
       
       success: function(res){

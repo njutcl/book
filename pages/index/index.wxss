@@ -1,7 +1,18 @@
+
 /**index.wxss**/
-.hint1{
+
+
+ text{
+  text-align: center;
+  margin: 5% 0;
+} 
+
+.timeSelect button{
+      margin: 5% 0;
+}
+
+#hint1{
   font-size: 50rpx;
-   margin: 5% 0;
 }
 .radio{
 display: block;
@@ -15,6 +26,8 @@ width: 200rpx;
 transform: scale(1.05);
 transition: 0.3s;
 }
-.hint2{
-  margin: 5% 0;
+#hint2{
+  font-size: 30rpx;
+  color: #c3c3c3;
 }
+
