@@ -3,11 +3,29 @@
 .container{
   padding: 100rpx;
 }
-
+.phone{
+  border: 1px solid gray;
+    border-radius: 20rpx;
+    padding-left: 5rpx;
+}
 .submit-hover{
 transform: scale(1.05);
 transition: 0.3s;
 }
 .submit{
   margin: 10% 0;
+}
+
+.records{
+  border:none;
+  border-radius: 20rpx;
+  width: 600rpx;
+  display: flex;
+flex: auto;
+justify-content: space-between;
+line-height: 110rpx;
+margin: 10rpx;
+background-color:rgb(62, 219, 247);
+box-shadow: 6rpx 6rpx 1rpx grey;
+font-size: 30rpx;
 }

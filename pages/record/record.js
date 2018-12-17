@@ -17,18 +17,19 @@ Page({
   },
   submitPhone() {
     var that = this;
-    if (this.data.phoneNumber == null) {
+    if (!this.data.phoneNumber) {
       wx.showToast({
         title: '请先输入手机号',
         icon: 'loading',
-        duration: 1000
+        duration: 1000,
+        mask:true
       })
     } else {
       wx.request({
         url: 'https://forklp.cn/position/getreuserinfo',
         method: 'POST',
         data: {
-          phone: that.data.phoneNumber
+          phone: that.data.phoneNumber,
         },
         header: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -37,6 +38,14 @@ Page({
           console.log(res.data);
           that.setData({
 
+          })
+        },fail:function(res){
+          wx.showToast({
+            title: '找不到啊',
+            icon: 'success',
+            duration: 1000,
+            mask: true,
+   
           })
         }
       })
