@@ -89,7 +89,7 @@ Page({
     let that = this;
     wx.request({
 
-      url: 'http://132.232.91.230:8080/position/getallre',
+      url: 'https://forklp.cn/position/getallre',
 
       method:'POST',
       
@@ -296,7 +296,7 @@ Page({
     else{
       console.log(this.data.userPhone);
       wx.request({
-        url: 'http://132.232.91.230:8080/position/getcode',
+        url: 'https://forklp.cn/position/getcode',
         header:{
           'Content-Type': 'application/x-www-form-urlencoded',
         },
@@ -385,7 +385,7 @@ Page({
       console.log("id:" + this.data.availableDesk[this.data.selectedDesk][this.data.selectedChair].positionId);
       wx.request({
 
-        url: 'http://132.232.91.230:8080/position/reservation',
+        url: 'https://forklp.cn/position/reservation',
 
         header: {
 
