@@ -85,12 +85,12 @@ Page({
     // /position/getall 包含手机号信息
     let that = this;
     wx.request({
-      url: 'http://132.232.91.230:8080/position/getall',
+      url: 'http://132.232.91.230:8080/position/getallre',
       method:'POST',
       
       success: function(res){
-        console.log(res.data);
-        console.log("data: "+res.data[0].positionId);
+        // console.log(res.data);
+        // console.log("data: "+res.data[0].positionId);
         that.setData({
           sourceData:res.data,
         });
@@ -98,56 +98,57 @@ Page({
         that.setData({
         availableDesk: {
           1:{
-            1:res.data[-1],
-            2:res.data[-2],
-            3:res.data[-3],
-            4:res.data[-4],
+            1:res.data[0],
+            2:res.data[1],
+            3:res.data[2],
+            4:res.data[3],
           },
           2: {
-            1: res.data[-5],
-            2: res.data[-6],
-            3: res.data[-7],
-            4: res.data[-8],
+            1: res.data[4],
+            2: res.data[5],
+            3: res.data[6],
+            4: res.data[7],
           },
           3: {
-            1: res.data[-9],
-            2: res.data[-10],
+            1: res.data[8],
+            2: res.data[9]
           },
           4: {
-            1: res.data[-11],
-            2: res.data[-12],
-            3: res.data[-13],
-            4: res.data[-14],
+            1: res.data[10],
+            2: res.data[11],
+            3: res.data[12],
+            4: res.data[13],
           },
           5: {
-            1: res.data[-15],
-            2: res.data[-16],
-            3: res.data[-17],
-            4: res.data[-18],
+            1: res.data[14],
+            2: res.data[15],
+            3: res.data[16],
+            4: res.data[17],
           },
           6: {
-            1: res.data[-19],
-            2: res.data[-20],
+            1: res.data[18],
+            2: res.data[19],
           },
           7: {
-            1: res.data[-21],
-            2: res.data[-22],
-            3: res.data[-23],
-            4: res.data[-24],
-            5: res.data[-25],
-            6: res.data[-26],
+            1: res.data[20],
+            2: res.data[21],
+            3: res.data[22],
+            4: res.data[23],
+            5: res.data[24],
+            6: res.data[25],
           },
           8: {
-            1: res.data[-27],
-            2: res.data[-28],
-            3: res.data[-29],
-            4: res.data[-30],
-            5: res.data[-31],
-            6: res.data[-32],
+            1: res.data[26],
+            2: res.data[27],
+            3: res.data[28],
+            4: res.data[29],
+            5: res.data[30],
+            6: res.data[31],
           },
         }
       })
       ;
+      console.log(that.data.availableDesk);
       for (var i =1; i<=8; i++)
       {
         for(var j=1;j<=that.data.availableDesk[i].length; j++){
