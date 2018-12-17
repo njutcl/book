@@ -7,6 +7,7 @@
   border: 1px solid gray;
     border-radius: 20rpx;
     padding-left: 5rpx;
+ height: 100rpx;
 }
 .submit-hover{
 transform: scale(1.05);
@@ -17,15 +18,16 @@ transition: 0.3s;
 }
 
 .records{
+padding-left: 100rpx;
   border:none;
   border-radius: 20rpx;
-  width: 600rpx;
+  width: 500rpx;
   display: flex;
 flex: auto;
 justify-content: space-between;
 line-height: 110rpx;
-margin: 10rpx;
+margin: 5% 0;
 background-color:rgb(62, 219, 247);
 box-shadow: 6rpx 6rpx 1rpx grey;
-font-size: 30rpx;
+font-size: 40rpx;
 }
