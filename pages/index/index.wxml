@@ -5,14 +5,14 @@
 <image mode='widthFix'class="logo" src='../images/xiaoliu.jpg'></image>
 <image mode="widthFix" class='logo' src='../images/dot.gif'></image>
 <form class='timeSelect' bindsubmit="formSubmit">
-<radio-group class="radio-group" bindchange="radioChange">
+<checkbox-group class="checkbox-group" bindchange="checkboxChange">
   <label class="radio" wx:for="{{times}}">
-    <radio value="{{item.value}}" checked="{{item.checked}}"  />{{item.name}}
+    <checkbox value="{{item.value}}" checked="{{item.checked}}"  />{{item.name}}
   </label>
   <button form-type='submit' type='primary' hover-class='submit-hover'>提交</button>
   <button type='default' bindtap='toRecord' hover-class='submit-hover'>查看预约</button>
 
-</radio-group>
+</checkbox-group>
 <text id='hint2'>座位需提前一天预约！</text>
 </form>
 
