@@ -239,7 +239,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    return {
+      title: '小留同学自习预约选座小程序',
+      desc: '从现在开始去小留同学自习需要预约选座啦，欢迎大家提前预约！',
+      path: '/pages/index/index'
+    }
   }
   
 })

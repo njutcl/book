@@ -73,7 +73,7 @@ Page({
     //   url: '../logs/logs?name=time'
     // })
     wx.setNavigationBarTitle({
-      title: '预约座位',
+      title: '预约选座',
     });
     let array = [];
     //time要改为数组['morning','afternoon','evening'];
@@ -93,7 +93,7 @@ Page({
       // time:"morning",
       // userPhone:options.userPhone,
     });
-    console.log(this.data.time);
+    // console.log(this.data.time);
 
     
     //请求所有预约
@@ -165,13 +165,13 @@ Page({
         }
       })
       ;
-      console.log(res.data);
-      console.log(that.data.availableDesk);
+      // console.log(res.data);
+      // console.log(that.data.availableDesk);
       for (var i =1; i<=8; i++)
       {
-        console.log(that.data.time);
-        console.log(that.data.availableDesk);
-        console.log(Object.keys(that.data.availableDesk[i]).length);
+        // console.log(that.data.time);
+        // console.log(that.data.availableDesk);
+        // console.log(Object.keys(that.data.availableDesk[i]).length);
         for (var j = 1; j <= Object.keys(that.data.availableDesk[i]).length; j++){
           for (var k=0;k<that.data.time.length;k++){
             if (that.data.availableDesk[i][j][that.data.time[k]] == true)//某个座位已被占用
@@ -199,7 +199,7 @@ Page({
           url: '../index/index',
         })
       }
-      console.log(that.data.availableDesk);
+      // console.log(that.data.availableDesk);
       // let userPhoneKey;
       // for (var i=0; i<that.data.time.length;i++){
       //   if (that.data.time == "morning") {
@@ -268,7 +268,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '小留同学自习预约选座小程序',
+      desc: '从现在开始去小留同学自习需要预约选座啦，欢迎大家提前预约！',
+      path: '/pages/index/index'
+    }
   },
   backLoginBtn: function(){
     wx.navigateTo({
