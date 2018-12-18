@@ -38,12 +38,10 @@ Page({
 
 
   }, onShareAppMessage: function () {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target);
-    }
+
     return {
-      title: '从现在开始去小留同学自习需要预约选座啦，欢迎大家提前预约！',
+      title: '小留同学自习预约选座小程序',
+      desc: '从现在开始去小留同学自习需要预约选座啦，欢迎大家提前预约！',
       path: '/pages/index/index'
     }
   }
