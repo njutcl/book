@@ -6,12 +6,10 @@
     <button class="submit" type='primary' form-type='submit' hover-class='submit-hover'>提交</button>
 
     <button class="cancle" type='default' hover-class='submit-hover' bindtap='delete'>取消预约</button>
-    <text class='records'>姓名：{{name}}</text>
-    <text class='records'>座位号：{{id}}</text>
-    <text class='records'>早上：{{morning}}</text>
-    <text class='records'>下午：{{afternoon}}</text>
-    <text class='records'>晚上：{{evening}}</text>
-
 
   </form>
+  <view wx:for="{{array}}" class="records">
+    <image src='{{item.src}}' mode='widthFix' class='picture'></image>
+    <text>{{item.name}}:{{item.value}}</text>
+</view>
 </view>

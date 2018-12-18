@@ -16,19 +16,18 @@ transition: 0.3s;
 .submit{
   margin: 10% 0;
 }
-
+.picture{
+  width: 80rpx;
+  margin: auto 5%;
+}
 .records{
-padding-left: 100rpx;
-  border:none;
-  border-radius: 20rpx;
+padding-left: 0rpx;
+  border-bottom:2rpx solid grey;
   width: 500rpx;
   display: flex;
 flex: auto;
-justify-content: space-between;
 line-height: 110rpx;
 margin: 5% 0;
-background-color:rgb(62, 219, 247);
-box-shadow: 6rpx 6rpx 1rpx grey;
 font-size: 40rpx;
 }
 .records:hover{
