@@ -13,7 +13,7 @@ Page({
     btndisabled:false,
     
     //globalData中的选择的时间
-    time:"",
+    time:[],
     
     
     selectedDesk:"0",
@@ -75,13 +75,25 @@ Page({
     wx.setNavigationBarTitle({
       title: '预约座位',
     });
-
+    let array = [];
+    //time要改为数组['morning','afternoon','evening'];
+    //判断位置是否被占用处，要分别判断time的每一项是否成立
+    //最后是上传时要将time转变为‘012’
+    if (options.time.match('morning')){
+      array.push('morning');
+    }
+    if (options.time.match('afternoon')) {
+      array.push('afternoon');
+    }
+    if (options.time.match('evening')) {
+      array.push('evening');
+    }
     this.setData({
-      time:options.time,
+      time:array,
       // time:"morning",
       // userPhone:options.userPhone,
     });
-
+    console.log(this.data.time);
 
     
     //请求所有预约
@@ -161,14 +173,15 @@ Page({
         console.log(that.data.availableDesk);
         console.log(Object.keys(that.data.availableDesk[i]).length);
         for (var j = 1; j <= Object.keys(that.data.availableDesk[i]).length; j++){
-          console.log(that.data.availableDesk[i][j]);
-          
-          if (that.data.availableDesk[i][j][that.data.time]==true)//某个座位已被占用
-          {
-            delete that.data.availableDesk[i][j];
-            console.log(i+" "+j);
+          for (var k=0;k<that.data.time.length;k++){
+            if (that.data.availableDesk[i][j][that.data.time[k]] == true)//某个座位已被占用
+            {
+              delete that.data.availableDesk[i][j];
+              break;
+            }
           }
-        } ;
+          
+        } 
         if (that.data.availableDesk[i].length==0){
           delete that.data.availableDesk[i];//某个桌子全部座位都被占用，删除某个桌子号
         }
@@ -177,7 +190,7 @@ Page({
         wx.showToast({
           title: '无剩余座位，稍后再来',
           icon:'loading',
-          duration:2000,
+          duration:1000,
         })
         setTimeout(function(){
           wx.hideToast();
@@ -187,31 +200,18 @@ Page({
         })
       }
       console.log(that.data.availableDesk);
-      let userPhoneKey;
-      if (that.data.time=="morning"){
-        userPhoneKey = 'user1Phone';
-      }
-      else if (that.data.time=="afternoon"){
-        userPhoneKey='user2Phone';
-      }
-      else{
-        userPhoneKey = 'user3Phone';
-      }
-      for (var i=0; i<32; i++){
-        if (res.data[i][userPhoneKey]==that.data.userPhone){
-          wx.showToast({
-            title: '你已预约',
-            icon: 'loading',
-            duration: 2000,
-          })
-          setTimeout(function () {
-            wx.hideToast();
-          }, 2000)
-          wx.navigateTo({
-            url: '../index/index',
-          })
-        }
-      }
+      // let userPhoneKey;
+      // for (var i=0; i<that.data.time.length;i++){
+      //   if (that.data.time == "morning") {
+      //     userPhoneKey = 'user1Phone';
+      //   }
+      //   else if (that.data.time == "afternoon") {
+      //     userPhoneKey = 'user2Phone';
+      //   }
+      //   else {
+      //     userPhoneKey = 'user3Phone';
+      //   }
+      // }
       }
     })
   },
@@ -287,7 +287,7 @@ Page({
       wx.showToast({
         title:'手机号码错误',
         icon:'loading',
-        duration:2000,
+        duration:1000,
       })
       setTimeout(function(){
         wx.hideToast();
@@ -346,7 +346,7 @@ Page({
 
         icon: 'loading',
 
-        duration: 2000
+        duration: 1000
 
       })
 
@@ -361,7 +361,7 @@ Page({
       wx.showToast({
         title: '验证码为空',
         icon: 'loading',
-        duration:2000
+        duration:1000
       })
       setTimeout(function () {
 
@@ -373,7 +373,7 @@ Page({
       wx.showToast({
         title: '请选择座位',
         icon: 'loading',
-        duration: 2000
+        duration: 1000
       })
       setTimeout(function () {
 
@@ -382,16 +382,20 @@ Page({
       }, 2000)
     }
     else {
-      let timeid;
-      if (this.data.time=="morning"){
-        timeid = 0;
+      let timeid="";
+      for (var i=0; i<this.data.time.length;i++){
+        if (this.data.time[i] == "morning") {
+          timeid += 0;
+        }
+        else if (this.data.time[i] == "afternoon") {
+          timeid += 1;
+        }
+        else  {
+          timeid += 2;
+        }
       }
-      else if (this.data.time=="afternoon"){
-        timeid=1;
-      }
-      else{
-        timeid = 2;
-      }
+      
+      console.log("timeid"+timeid);
       console.log("id:" + this.data.availableDesk[this.data.selectedDesk][this.data.selectedChair].positionId);
       console.log("code:"+e.detail.value.verifCode);
       wx.request({
@@ -430,21 +434,24 @@ Page({
             
           }
           else if (res.data=="预约成功"){
-            wx.showToast({
+            wx.showModal({
               title: '预约成功',
-              icon: 'success',
-              duration: 2000,
-            });
-            setTimeout(function () {
-              wx.hideToast();
-            }, 2000);
-          wx.navigateTo({
-            url: '../index/index',
-          });
+              content: '即将返回主页',
+              success: function(res){
+                if (res.confirm){
+                  wx.navigateTo({
+                    url: '../index/index',
+                  })
+                }
+              }
+            })
+          
           }
           else if (res.data =="您已经预约座位"){
             wx.showToast({
               title: '你已预约',
+              icon:'loading',
+              duration:1500,
             });
             setTimeout(function(){
               wx.hideToast();
@@ -455,7 +462,7 @@ Page({
           }
           else{
             wx.showToast({
-              title: '未知错误',
+              title: res.data,
               icon: 'loading',
               duration: 1500,
             });
