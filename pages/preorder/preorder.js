@@ -398,7 +398,8 @@ Page({
           timeid += 2;
         }
       }
-      
+      console.log("name:"+this.data.name);
+      console.log("phone:"+this.data.userPhone);
       console.log("timeid"+timeid);
       console.log("id:" + this.data.availableDesk[this.data.selectedDesk][this.data.selectedChair].positionId);
       console.log("code:"+e.detail.value.verifCode);
@@ -459,10 +460,12 @@ Page({
             });
             setTimeout(function(){
               wx.hideToast();
-            },2000);
-            wx.navigateTo({
-              url: '../index/index',
-            })
+              wx.navigateTo({
+                url: '../index/index',
+              })
+            },1500);
+            
+            
           }
           else{
             wx.showToast({
