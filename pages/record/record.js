@@ -35,7 +35,7 @@ Page({
      var value3 = "array[2].value";
      var value4 = "array[3].value";
      var value5 = "array[4].value";
-    if (!this.data.phoneNumber.value) {
+     if (!this.data.phoneNumber || this.data.phoneNumber.cursor == 0){
       wx.showToast({
         title: '请先输入手机号',
         icon: 'loading',

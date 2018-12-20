@@ -27,9 +27,20 @@ Page({
 
   formSubmit: function() {
     var that = this;
-    wx.navigateTo({
-      url: '../preorder/preorder?time=' + that.data.time,
-    })
+    if (that.data.time == "") {
+      wx.showToast({
+        title: '请选择预约时间！',
+        icon:'loading',
+        duration: 1000,
+        mask: true
+      })
+    }
+    else
+      
+        wx.navigateTo({
+          url: '../preorder/preorder?time=' + that.data.time, url: '../preorder/preorder?time=' + that.data.time,
+        })
+     
   },
   toRecord: function() {
     wx.navigateTo({
