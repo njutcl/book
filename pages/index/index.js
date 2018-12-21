@@ -36,11 +36,11 @@ Page({
       })
     }
     else
-      
+      {
         wx.navigateTo({
           url: '../preorder/preorder?time=' + that.data.time, url: '../preorder/preorder?time=' + that.data.time,
         })
-     
+      }
   },
   toRecord: function() {
     wx.navigateTo({
